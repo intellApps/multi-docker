@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t intellapps/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t intelligentappsofficial/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true intellapps/react-test npm test
+  - docker run -e CI=true intelligentappsofficial/react-test npm test
 
 after_success:
-  - docker build -t intellapps/multi-client ./client 
-  - docker build -t intellapps/multi-nginx ./nginx 
-  - docker build -t intellapps/multi-server ./server 
-  - docker build -t intellapps/multi-worker ./worker 
+  - docker build -t intelligentappsofficial/multi-client ./client 
+  - docker build -t intelligentappsofficial/multi-nginx ./nginx 
+  - docker build -t intelligentappsofficial/multi-server ./server 
+  - docker build -t intelligentappsofficial/multi-worker ./worker 
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
 
-  - docker push intellapps/multi-client
-  - docker push intellapps/multi-nginx
-  - docker push intellapps/multi-server
-  - docker push intellapps/multi-worker
+  - docker push intelligentappsofficial/multi-client
+  - docker push intelligentappsofficial/multi-nginx
+  - docker push intelligentappsofficial/multi-server
+  - docker push intelligentappsofficial/multi-worker
