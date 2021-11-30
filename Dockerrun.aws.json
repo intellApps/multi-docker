@@ -1,0 +1,36 @@
+{
+    "AWSDBDockerrunVersion": 2,
+    "containerDefinitions": [
+    {
+        "name": "client",
+        "image": "intelligentappsofficial/multi-client",
+        "hostname": "client",
+        "essential": false
+    },
+    {
+        "name": "server",
+        "image": "intelligentappsofficial/multi-server",
+        "hostname": "api",
+        "essential": false
+    },
+    {
+        "name": "worker",
+        "image": "intelligentappsofficial/multi-worker",
+        "hostname": "worker",
+        "essential": false
+    },
+    {
+        "name": "nginx",
+        "image": "intelligentappsofficial/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "containerPort": 80
+            }
+        ],
+        "links": ["client", "server"]
+    }
+    ]
+}
